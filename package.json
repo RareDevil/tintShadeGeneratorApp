@@ -4,6 +4,7 @@
   "description": "This is a generator for tints and shades",
   "main": "main.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
