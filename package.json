@@ -1,39 +1,25 @@
 {
-  "name": "tintshadegeneratorapp",
-  "version": "0.0.1",
-  "description": "This is a generator for tints and shades",
-  "main": "app/main.js",
+  "name": "tint-shade-generator-app",
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RareDevil/tintShadeGeneratorApp.git"
-  },
-  "keywords": [
-    "Tint",
-    "shade",
-    "generator",
-    "app"
-  ],
-  "author": "RareDevil",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/RareDevil/tintShadeGeneratorApp/issues"
-  },
-  "homepage": "https://github.com/RareDevil/tintShadeGeneratorApp#readme",
-  "devDependencies": {
-    "@electron-forge/cli": "^6.2.1",
-    "@electron-forge/maker-deb": "^6.2.1",
-    "@electron-forge/maker-rpm": "^6.2.1",
-    "@electron-forge/maker-squirrel": "^6.2.1",
-    "@electron-forge/maker-zip": "^6.2.1",
-    "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
-    "electron": "^25.2.0"
+    "dev": "vite",
+    "build": "vue-tsc && vite build && electron-builder",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
-  }
+    "values.js": "^2.1.1",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "electron": "^24.4.0",
+    "electron-builder": "^23.6.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2",
+    "vite-plugin-electron": "^0.11.2",
+    "vite-plugin-electron-renderer": "^0.14.5",
+    "vue-tsc": "^1.4.2"
+  },
+  "main": "dist-electron/main.js"
 }
