@@ -1,0 +1,28 @@
+{
+  "name": "tintshadegeneratorapp",
+  "version": "0.0.1",
+  "description": "This is a generator for tints and shades",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RareDevil/tintShadeGeneratorApp.git"
+  },
+  "keywords": [
+    "Tint",
+    "shade",
+    "generator",
+    "app"
+  ],
+  "author": "RareDevil",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RareDevil/tintShadeGeneratorApp/issues"
+  },
+  "homepage": "https://github.com/RareDevil/tintShadeGeneratorApp#readme",
+  "devDependencies": {
+    "electron": "^25.2.0"
+  }
+}
