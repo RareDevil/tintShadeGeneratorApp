@@ -25,8 +25,8 @@ function createWindow() {
         minHeight: 600,
         minWidth: 800,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
+            preload: path.join(__dirname, 'preload.js'),
         },
     })
 
@@ -51,6 +51,9 @@ function createWindow() {
 
 app.on('window-all-closed', () => {
     win = null;
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 })
 
 app.whenReady().then(createWindow);

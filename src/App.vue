@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const href = window.location.href;
 </script>
 
 <template>
@@ -22,7 +22,7 @@
             <router-view></router-view>
         </div>
         <div id="main-footer" class="p-2 surface-overlay">
-            Footer - <router-link to="/">Go to Home</router-link> <router-link to="/settings">Go to About</router-link>
+            Footer - <router-link to="/">Go to Home</router-link> <router-link to="/settings">Go to Settings</router-link> - Current page '{{ $route.name }}' - {{ href }}
         </div>
     </div>
 </template>

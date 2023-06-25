@@ -10,29 +10,11 @@ import 'primeicons/primeicons.css';
 import './style.scss';
 
 import { createApp } from 'vue';
-import * as VueRouter from 'vue-router';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
 import BadgeDirective from 'primevue/badgedirective';
 
-
-const Home = () => import('./pages/home.vue');
-const Settings = () => import('./pages/settings.vue');
-const router = VueRouter.createRouter({
-    history: VueRouter.createWebHistory(import.meta.env.BASE_URL),
-    routes: [
-        {
-            path: '/',
-            name: 'home',
-            component: Home,
-        },
-        {
-            path: '/settings',
-            name: 'settings',
-            component: Settings,
-        },
-    ],
-});
+import router from "./core/router.ts";
 
 const app = createApp(App);
 app.use(router);
