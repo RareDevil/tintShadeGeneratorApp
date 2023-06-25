@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'node:path'
 
 // The built directory structure
@@ -19,28 +19,61 @@ let win: BrowserWindow | null
 const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 
 function createWindow() {
-  win = new BrowserWindow({
-    icon: path.join(process.env.PUBLIC, 'electron-vite.svg'),
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-    },
-  })
+    win = new BrowserWindow({
+        icon: path.join(process.env.PUBLIC, 'electron-vite.svg'),
+        frame: false,
+        minHeight: 600,
+        minWidth: 800,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js'),
+            nodeIntegration: true,
+        },
+    })
 
-  // Test active push message to Renderer-process.
-  win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', (new Date).toLocaleString())
-  })
+    win.setMenu(null)
 
-  if (VITE_DEV_SERVER_URL) {
-    win.loadURL(VITE_DEV_SERVER_URL)
-  } else {
-    // win.loadFile('dist/index.html')
-    win.loadFile(path.join(process.env.DIST, 'index.html'))
-  }
+    // Test active push message to Renderer-process.
+    win.webContents.on('did-finish-load', () => {
+        win?.webContents.send('main-process-message', (new Date).toLocaleString())
+    })
+
+    if (VITE_DEV_SERVER_URL) {
+        console.log('testing');
+        win.loadURL(VITE_DEV_SERVER_URL);
+        win.webContents.openDevTools();
+    }
+    else {
+        console.log('testing 2');
+        // win.loadFile('dist/index.html')
+        win.loadFile(path.join(process.env.DIST, 'index.html'))
+    }
 }
 
 app.on('window-all-closed', () => {
-  win = null
+    win = null;
 })
 
-app.whenReady().then(createWindow)
+app.whenReady().then(createWindow);
+
+ipcMain.on('window-controls', (event, options) => {
+    const win = BrowserWindow.fromWebContents(event.sender);
+    if (win !== null) { //  
+        switch (options.action) {
+            case 'minimize':
+                win.minimize()
+                break;
+            case 'maximize':
+                if (win.isMaximized()) {
+                    win.unmaximize()
+                } else {
+                    win.maximize()
+                }
+                break;
+            case 'close':
+                win.close();
+                break;
+            default:
+                break;
+        }
+    }
+})

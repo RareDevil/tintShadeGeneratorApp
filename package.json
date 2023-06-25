@@ -8,14 +8,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "material-icons": "^1.13.8",
+    "material-symbols": "^0.8.1",
+    "primeflex": "^3.3.1",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.29.2",
     "values.js": "^2.1.1",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "sass": "^1.62.1",
     "@vitejs/plugin-vue": "^4.1.0",
     "electron": "^24.4.0",
     "electron-builder": "^23.6.0",
+    "sass": "^1.62.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.2",
     "vite-plugin-electron": "^0.11.2",
