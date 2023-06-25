@@ -22,7 +22,7 @@ const href = window.location.href;
             <router-view></router-view>
         </div>
         <div id="main-footer" class="p-2 surface-overlay">
-            Footer - <router-link to="/">Go to Home</router-link> <router-link to="/settings">Go to Settings</router-link> - Current page '{{ $route.name }}' - {{ href }}
+            Footer - <router-link to="/">Go to Home</router-link> <router-link to="/settings">Go to Settings</router-link>
         </div>
     </div>
 </template>
