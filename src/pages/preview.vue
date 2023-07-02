@@ -25,13 +25,10 @@ for (const color of colors.value) {
     const accordionContentItem: accordionContentItem[] = [];
     for (const tintShade of tintShades.value) {
         const tintShadeColor = new Values(color.code);
-        let hexColor = colorValues.hexString();
         if (tintShade.type === 'tint') {
-            hexColor = colorValues.tint(tintShade.weight).hexString();
             tintShadeColor.setColor(colorValues.tint(tintShade.weight).hexString());
         }
         if (tintShade.type === 'shade') {
-            hexColor = colorValues.shade(tintShade.weight).hexString();
             tintShadeColor.setColor(colorValues.shade(tintShade.weight).hexString());
         }
         
