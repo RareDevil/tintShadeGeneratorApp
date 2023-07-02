@@ -6,8 +6,9 @@ import InputText from "primevue/inputtext";
 import Toolbar from 'primevue/toolbar';
 import Button from 'primevue/button';
 import Avatar from 'primevue/avatar';
+import Values from 'values.js';
 import { colorItem } from "../../interfaces/config.ts";
-import { useColorStore } from "../../stores/main.ts"
+import { useColorStore } from "../../stores/main.ts";
 
 const store = useColorStore();
 const colors = ref<colorItem[]>(store.getColors);
@@ -16,16 +17,21 @@ const selectedColors = ref<colorItem[]>([]);
 const disableDelete = ref<boolean>(true);
 
 const validateItem = (item: colorItem): boolean => {
-    let validData = true;
-
     if (item.name.trim() === '') {
-        validData = false;
+        return false;
     }
-    if (item.code.trim() === '') {
-        validData = false;
+    const code = item.code;
+    if (code.trim() === '') {
+        return false;
+    }
+    try {
+        const color = new Values(code);
+        console.log(color);
+    } catch {
+        return false;
     }
     
-    return validData;
+    return true;
 }
 
 const onRowEditSave = (event: DataTableRowEditSaveEvent) => {
@@ -70,6 +76,29 @@ const onRowSelectAll = () => {
 };
 const onRowUnselectAll = () => {
     disableDelete.value = true;
+};
+
+const codeSupport = { 
+    value: `<h4 class='text-white'>Supports</h4>
+            <ul>
+                <li>&lt;color value&gt;</li>
+                <ul>
+                    <li>Hexadecimal RGB value: #RGB #RRGGBB</li>
+                    <li>#RGBA #RRGGBBAA (4 and 8-digit hexadecimal RGBA notation)</li>
+                    <li>RGB/A - CSS Color Module Level 3 and 4 (number, percentage)</li>
+                    <li>HSL/A - CSS Color Module Level 3 and 4 (number, deg, rad, turn)</li>
+                </ul>
+                <li>&lt;color keyword&gt;</li>
+                <ul>
+                    <li>One of the pre-defined color keywords.</li>
+                </ul>
+                <li>transparent</li>
+                <ul>
+                    <li>Shorthand for transparent black, rgba(0,0,0,0).</li>
+                </ul>
+            </ul>`, 
+    escape: true,
+    class: 'code-support-help'
 };
 
 </script>
@@ -121,7 +150,14 @@ const onRowUnselectAll = () => {
             </Column>
             <Column field="code" header="code" style="width: 30%">
                 <template #editor="{ data, field }">
-                    <InputText v-model="data[field]" style="width: 100%" />
+                    <div class="grid grid-nogutter align-items-center gap-2">
+<!--                        <div class="col-fixed flex">-->
+                            <InputText v-model="data[field]" v-tooltip.bottom="codeSupport" style="width:100%" />
+<!--                        </div>-->
+<!--                        <div class="col">-->
+<!--                            <span class="material-icons">help</span>-->
+<!--                        </div>-->
+                    </div>
                 </template>
                 <template #body="{ data, field }">
                     <div class="grid grid-nogutter align-items-center gap-2">
@@ -131,9 +167,6 @@ const onRowUnselectAll = () => {
                         <div class="col">
                             <span>{{ data[field] }}</span>
                         </div>
-                    </div>
-                    <div>
-                        
                     </div>
                 </template>
             </Column>
@@ -146,5 +179,23 @@ const onRowUnselectAll = () => {
 .data-table-wrapper {
     height: calc(100% - 64px);
     overflow: auto;
+}
+</style>
+<style lang="scss">
+.code-support-help {
+    max-width: 35rem;
+    
+    .p-tooltip-text {
+        white-space: normal;
+        
+        h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+    }
 }
 </style>

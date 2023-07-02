@@ -11,6 +11,7 @@ import './style.scss';
 import { createApp } from 'vue';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
+import Tooltip from 'primevue/tooltip';
 import BadgeDirective from 'primevue/badgedirective';
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
@@ -22,6 +23,7 @@ pinia.use(piniaPluginPersistedstate)
 const app = createApp(App);
 app.use(router);
 app.use(PrimeVue);
+app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);
 app.use(pinia);
 // This should always be the last line
