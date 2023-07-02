@@ -1,5 +1,5 @@
 ﻿import { defineStore } from 'pinia';
-import { colorItem, newColorItem } from "../interfaces/config.ts";
+import { colorItem, newColorItem, newTintShadeItem, tintShadeItem } from "../interfaces/config.ts";
 
 // useMainStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
@@ -18,29 +18,43 @@ export const useMainStore = defineStore('main', {
     persist: true,
 });
 
+const getId = (array: colorItem[] | tintShadeItem[]): number => {
+    let id: number = 0;
+    if (array.length > 0) {
+        id = array.sort((a,b) => b.id - a.id)[0].id+1;
+    }
+    return id;
+}
+
 export const useColorStore = defineStore('colors', {
     state: () => ({
         colors: [] as colorItem[],
+        tintShades: [] as tintShadeItem[]
     }),
     getters: {
         getColors: state => state.colors,
+        getTintShades: state => state.tintShades,
     },
     actions: {
-        addColor(color: newColorItem): colorItem {
-            let id: number = 0;
-            if (this.colors.length > 0) {
-                id = this.colors.sort((a,b) => b.id - a.id)[0].id+1;
-            }
-            const newColor: colorItem = {
-                id: id,
+        addColor(color: newColorItem) {
+            this.colors.push({
+                id: getId(this.colors),
                 ...color
-            };
-            this.colors.push(newColor);
-            return newColor;
+            });
         },
         deleteColor(colorId: number) {
             const index = this.colors.findIndex(x => x.id === colorId);
             this.colors.splice(index, 1);
+        },
+        addTintShade(tintShade: newTintShadeItem) {
+            this.tintShades.push({
+                id: getId(this.tintShades),
+                ...tintShade
+            });
+        },
+        deleteTintShade(tintShadeId: number) {
+            const index = this.tintShades.findIndex(x => x.id === tintShadeId);
+            this.tintShades.splice(index, 1);
         }
     },
     persist: true,
