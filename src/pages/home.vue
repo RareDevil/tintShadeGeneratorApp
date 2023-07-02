@@ -4,10 +4,8 @@
 
 <template>
     <div>
-        Home
-        <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-        >create-vue</a
-        >
+        Welcome to Tint & Shade Generator app.<br>
+        Hope this app will help you as much as it have done for me.
     </div>
 </template>
 
