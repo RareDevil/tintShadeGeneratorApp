@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div>
+    <div class="p-3">
         Welcome to Tint & Shade Generator app.<br>
         Hope this app will help you as much as it have done for me.
     </div>

@@ -3,7 +3,9 @@
 </script>
 
 <template>
-    Download
+    <div class="p-3">
+        Download
+    </div>
 </template>
 
 <style scoped lang="scss">
