@@ -1,28 +1,57 @@
 <script setup lang="ts">
-const href = window.location.href;
+import { usePrimeVue } from 'primevue/config';
+import { useMainStore } from "./stores/main.ts"
+
+const store = useMainStore();
+const PrimeVue = usePrimeVue();
+
+if (store.currentTheme !== 'arya-blue') {
+    // @ts-ignore
+    PrimeVue.changeTheme('arya-blue', store.currentTheme, 'theme-stylesheet', () => {});
+}
+
+
 </script>
 
 <template>
     <div id="main-wrapper">
-        <div id="main-menu">
+        <div id="main-top-frame">
             <div id="main-menu-title">
                 Tint & Shade Generator
             </div>
-            <div id="main-menu-minimize" class="main-menu-button" data-action="minimize">
-                <span class="material-symbols-outlined">minimize</span>
+            <div id="main-top-frame-minimize" class="main-top-frame-button" data-action="minimize">
+                <span class="material-icons">minimize</span>
             </div>
-            <div id="main-menu-maximize" class="main-menu-button" data-action="maximize">
-                <span class="material-symbols-outlined">check_box_outline_blank</span>
+            <div id="main-top-frame-maximize" class="main-top-frame-button" data-action="maximize">
+                <span class="material-icons">check_box_outline_blank</span>
             </div>
-            <div id="main-menu-close" class="main-menu-button" data-action="close">
-                <span class="material-symbols-outlined">close</span>
+            <div id="main-top-frame-close" class="main-top-frame-button" data-action="close">
+                <span class="material-icons">close</span>
             </div>
         </div>
-        <div id="main-content-wrapper" class="flex-grow-1">
-            <router-view></router-view>
-        </div>
-        <div id="main-footer" class="p-2 surface-overlay">
-            Footer - <router-link to="/">Go to Home</router-link> <router-link to="/settings">Go to Settings</router-link>
+        <div id="main-content-wrapper">
+            <div id="main-content-menu">
+                <div>
+                    <router-link to="/"><span class="material-icons">home</span></router-link>
+                </div>
+                <div>
+                    <router-link to="/config"><span class="material-icons">mode_edit</span></router-link>
+                </div>
+                <div>
+                    <router-link to="/preview"><span class="material-icons">palette</span></router-link>
+                </div>
+                <div>
+                    <router-link to="/download"><span class="material-icons">download</span></router-link>
+                </div>
+                <div class="mt-auto">
+                    <router-link to="/settings"><span class="material-icons">settings</span></router-link>
+                </div>
+            </div>
+            <div id="main-content-router">
+                <div>
+                    <router-view />
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -35,10 +64,9 @@ const href = window.location.href;
         width: 100%;
         height: 100%;
         
-        #main-menu {
+        #main-top-frame {
             display: flex;
             height:30px;
-            background-color: var(--surface-overlay);
             
             #main-menu-title {
                 display: flex;
@@ -50,7 +78,7 @@ const href = window.location.href;
                 -webkit-app-region: drag;
             }
 
-            .main-menu-button {
+            .main-top-frame-button {
                 width:45px;
                 display: flex;
                 align-items: center;
@@ -68,12 +96,54 @@ const href = window.location.href;
                     }
                 }
                 
-                > .material-symbols-outlined {
+                > span {
                     font-size: 16px;
                 }
 
                 &:hover {
                     background-color: rgba(255,255,255,0.2);
+                }
+            }
+        }
+        
+        #main-content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            height: calc(100% - 30px);
+            max-height: calc(100% - 30px);
+            
+            #main-content-menu {
+                padding: 0.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                
+                > div {
+                    //cursor: pointer;
+                    padding: 0.5rem;
+                    > a {
+                        > span {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+            
+            #main-content-router {
+                height: 100%;
+                max-height: 100%;
+                flex-grow: 1;
+                border-top-left-radius: 10px;
+                overflow:hidden;
+                background-color: var(--surface-overlay);
+                
+                > div {
+                    height: 100%;
+                    max-height: 100%;
+                    width: 100%;
+                    max-width: 100%;
+                    overflow: auto;
                 }
             }
         }

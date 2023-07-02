@@ -79,4 +79,4 @@ ipcMain.on('window-controls', (event, options) => {
                 break;
         }
     }
-})
+});

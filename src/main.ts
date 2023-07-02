@@ -1,5 +1,4 @@
 // Theme stuff 
-import 'primevue/resources/themes/arya-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeflex/primeflex.css';
 // Icons
@@ -13,12 +12,17 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
 import BadgeDirective from 'primevue/badgedirective';
-
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import router from "./core/router.ts";
+
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
 const app = createApp(App);
 app.use(router);
 app.use(PrimeVue);
 app.directive('badge', BadgeDirective);
+app.use(pinia);
 // This should always be the last line
 app.mount('#app').$nextTick(() => postMessage({ payload: 'removeLoading' }, '*'))

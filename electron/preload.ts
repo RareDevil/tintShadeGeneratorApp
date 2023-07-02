@@ -95,7 +95,7 @@ window.onmessage = ev => {
 setTimeout(removeLoading, 4999)
 
 window.addEventListener('DOMContentLoaded', () => {
-    const elements = document.querySelectorAll('.main-menu-button');
+    const elements = document.querySelectorAll('.main-top-frame-button');
     for (const element of elements) {
         if (element instanceof HTMLElement) {
             element.addEventListener('click', () => {
