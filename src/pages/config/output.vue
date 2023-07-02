@@ -17,7 +17,8 @@ import Button from "primevue/button";
         }"
     >
         <template #start>
-            <Button label="New" icon="pi pi-plus" class="mr-2" />
+            Toolbar stuff?
+<!--            <Button label="New" icon="pi pi-plus" class="mr-2" />-->
             <!--            <Button label="Delete" icon="pi pi-times" severity="danger" />-->
         </template>
 
@@ -25,7 +26,8 @@ import Button from "primevue/button";
             <!-- Still not sure if i need something here.. -->
         </template>
     </Toolbar>
-    Output config
+    Output config<br>
+    Still being worked on.
 </template>
 
 <style scoped lang="scss">
