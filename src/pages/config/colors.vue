@@ -150,7 +150,7 @@ const codeSupport = {
             </Column>
             <Column field="code" style="width: 30%">
                 <template #header>
-                    <span>Code</span><span v-tooltip.left="codeSupport" class="material-icons cursor-pointer ml-auto">help</span>
+                    <span>Color code</span><span v-tooltip.left="codeSupport" class="material-icons cursor-pointer ml-2">help</span>
                 </template>
                 <template #editor="{ data, field }">
                     <div class="grid grid-nogutter align-items-center gap-2">
