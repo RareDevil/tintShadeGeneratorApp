@@ -148,21 +148,19 @@ const codeSupport = {
                     <InputText v-model="data[field]" style="width: 100%" />
                 </template>
             </Column>
-            <Column field="code" header="code" style="width: 30%">
+            <Column field="code" style="width: 30%">
+                <template #header>
+                    <span>Code</span><span v-tooltip.left="codeSupport" class="material-icons cursor-pointer ml-auto">help</span>
+                </template>
                 <template #editor="{ data, field }">
                     <div class="grid grid-nogutter align-items-center gap-2">
-<!--                        <div class="col-fixed flex">-->
-                            <InputText v-model="data[field]" v-tooltip.bottom="codeSupport" style="width:100%" />
-<!--                        </div>-->
-<!--                        <div class="col">-->
-<!--                            <span class="material-icons">help</span>-->
-<!--                        </div>-->
+                        <InputText v-model="data[field]" style="width:100%" />
                     </div>
                 </template>
                 <template #body="{ data, field }">
                     <div class="grid grid-nogutter align-items-center gap-2">
                         <div class="col-fixed flex" style="width:2rem;">
-                            <Avatar :style="`background-color:${data[field]};`" />
+                            <Avatar :style="`background-color:${data[field]}; border: 1px solid var(--surface-border)`" />
                         </div>
                         <div class="col">
                             <span>{{ data[field] }}</span>
