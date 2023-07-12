@@ -29,27 +29,10 @@ const safeDOM = {
 }
 
 /**
- * https://tobiasahlin.com/spinkit
- * https://connoratherton.com/loaders
- * https://projects.lukehaas.me/css-loaders
- * https://matejkustec.github.io/SpinThatShit
+ * https://cssloaders.github.io
  */
 function useLoading() {
-    const className = `loaders-css__square-spin`
     const styleContent = `
-@keyframes square-spin {
-  25% { transform: perspective(100px) rotateX(180deg) rotateY(0); }
-  50% { transform: perspective(100px) rotateX(180deg) rotateY(180deg); }
-  75% { transform: perspective(100px) rotateX(0) rotateY(180deg); }
-  100% { transform: perspective(100px) rotateX(0) rotateY(0); }
-}
-.${className} > div {
-  animation-fill-mode: both;
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  animation: square-spin 3s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
-}
 .app-loading-wrap {
   position: fixed;
   top: 0;
@@ -62,14 +45,59 @@ function useLoading() {
   background: #282c34;
   z-index: 9;
 }
-    `
+.loader {
+  position: relative;
+  display: inline-block;
+}
+.loader::before {
+  
+  content: 'Loading';
+  color: #FFF;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  letter-spacing: 2px;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: floating 1s ease-out infinite alternate;
+}
+.loader::after {
+  content: '';  
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.15);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  filter: blur(4px);
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: animloader 1s ease-out infinite alternate;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-25px);
+  }
+}
+
+@keyframes animloader {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}`;
     const oStyle = document.createElement('style')
     const oDiv = document.createElement('div')
 
     oStyle.id = 'app-loading-style'
     oStyle.innerHTML = styleContent
     oDiv.className = 'app-loading-wrap'
-    oDiv.innerHTML = `<div class="${className}"><div></div></div>`
+    oDiv.innerHTML = `<span class="loader"></span>`
 
     return {
         appendLoading() {
@@ -99,6 +127,7 @@ window.addEventListener('DOMContentLoaded', () => {
     for (const element of elements) {
         if (element instanceof HTMLElement) {
             element.addEventListener('click', () => {
+                console.log('testing');
                 ipcRenderer.send('window-controls', {
                     action: element.dataset.action,
                 });
