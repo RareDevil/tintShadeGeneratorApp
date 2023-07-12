@@ -96,9 +96,9 @@ export const GeneratorService = {
                 }
                 let value = tintShadeColor.hexString();
                 if (colorStore.getOutputOptions.variablesInClass && colorStore.getOutputOptions.cssVariables) {
-                    value = `var(${this.generateVariableName(color, tintShade)})`;
+                    value = `var(--${this.generateVariableName(color, tintShade)})`;
                 }
-                cssClasses += `.${this.generateClassName(color, tintShade)} {\n${getIndent()}background-color: ${value}\n}\n`;
+                cssClasses += `.${this.generateClassName(color, tintShade)} {\n${getIndent()}background-color: ${value};\n}\n`;
             }
         }
 
