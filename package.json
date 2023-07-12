@@ -2,7 +2,7 @@
   "productName": "Tint & Shade generator",
   "name": "tint-shade-generator-app",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.5",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build && electron-builder",
