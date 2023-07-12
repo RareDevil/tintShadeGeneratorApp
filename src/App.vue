@@ -74,7 +74,7 @@ if (store.currentTheme !== 'arya-blue') {
                 align-items: center;
                 margin-left: 0.5rem;
 
-                -webkit-user-select: none;
+                user-select: none;
                 -webkit-app-region: drag;
             }
 
@@ -114,6 +114,7 @@ if (store.currentTheme !== 'arya-blue') {
             max-height: calc(100% - 30px);
             
             #main-content-menu {
+                user-select: none;
                 padding: 0.5rem;
                 display: flex;
                 flex-direction: column;
