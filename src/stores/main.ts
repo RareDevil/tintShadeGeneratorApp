@@ -1,5 +1,5 @@
 ﻿import { defineStore } from 'pinia';
-import { colorItem, newColorItem, newTintShadeItem, tintShadeItem } from "../interfaces/config.ts";
+import { colorItem, newColorItem, newTintShadeItem, outputOptions, tintShadeItem } from "../interfaces/config.ts";
 
 // useMainStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
@@ -29,11 +29,22 @@ const getId = (array: colorItem[] | tintShadeItem[]): number => {
 export const useColorStore = defineStore('colors', {
     state: () => ({
         colors: [] as colorItem[],
-        tintShades: [] as tintShadeItem[]
+        tintShades: [] as tintShadeItem[],
+        outputOptions: {
+            cssVariables: true,
+            cssClasses: false,
+            variablesInClass: false,
+            classPrefix: '',
+            classSuffix: '',
+            classSplitter: 'NONE',
+            variableSplitter: 'NONE',
+            indent: '2',
+        } as outputOptions,
     }),
     getters: {
         getColors: state => state.colors,
         getTintShades: state => state.tintShades,
+        getOutputOptions: state => state.outputOptions,
     },
     actions: {
         addColor(color: newColorItem) {
