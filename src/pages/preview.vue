@@ -84,9 +84,10 @@ for (const color of colors.value) {
                  :style="{ backgroundColor: tintShade.backgroundHex, color: tintShade.colorHex }"
             >
                 {{ tintShade.backgroundHex }}<br>
+                Type: {{ tintShade.type }}<br>
                 Prefix: {{ tintShade.prefix }}<br>
                 Suffix: {{ tintShade.suffix }}<br>
-                weight: {{ tintShade.weight }}<br>
+                Weight: {{ tintShade.weight }}<br>
             </div>
         </div>
         </AccordionTab>
