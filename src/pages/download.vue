@@ -1,38 +1,11 @@
 ﻿<script setup lang="ts">
 import * as monaco from 'monaco-editor';
 import { onMounted, ref } from "vue";
-import { useColorStore, useMainStore } from "../stores/main.ts"
-import IStandaloneCodeEditor = monaco.editor.IStandaloneCodeEditor;
-import { colorItem, tintShadeItem } from "../interfaces/config.ts";
-import Values from "values.js";
+import { useMainStore } from "../stores/main.ts"
+import { GeneratorService } from '../services/generator.service.ts' 
 const store = useMainStore();
-const colorStore = useColorStore();
-const colors = ref<colorItem[]>(colorStore.getColors);
-const tintShades = ref<tintShadeItem[]>(colorStore.getTintShades);
-let editorValue = ':root {\n';
-for (const color of colors.value) {
-    const colorValues = new Values(color.code);
-    // const accordionContentItem: accordionContentItem[] = [];
-    for (const tintShade of tintShades.value) {
-        const tintShadeColor = new Values(color.code);
-        if (tintShade.type === 'tint') {
-            tintShadeColor.setColor(colorValues.tint(tintShade.weight).hexString());
-        }
-        if (tintShade.type === 'shade') {
-            tintShadeColor.setColor(colorValues.shade(tintShade.weight).hexString());
-        }
-        let prefix = '';
-        if (tintShade.prefix !== null && tintShade.prefix.trim() !== '') {
-            prefix = `${tintShade.prefix.trim()}-`
-        }
-        let suffix = '';
-        if (tintShade.suffix !== null && tintShade.suffix.trim() !== '') {
-            suffix = `-${tintShade.suffix.trim()}`
-        }
-        editorValue += `    --${prefix}${color.name}${suffix}: ${tintShadeColor.hexString()};\n`;
-    }
-}
-editorValue += '}';
+
+const editorValue = GeneratorService.getOutput();
 const editorContainer = ref();
 const currentTheme = store.currentTheme.split('-')[0];
 const theme = ref("myDarkTheme");

@@ -10,8 +10,8 @@ const store = useColorStore();
 const options = store.getOutputOptions;
 // -?[_a-zA-Z]+[_a-zA-Z0-9-]* css validator
 const splitterOptions = ref([
-    { name: 'Underscore ( _ )', code: '_' },
-    { name: 'Hyphen ( - )', code: '-' },
+    { name: 'Underscore ( _ )', code: 'UNDERSCORE' },
+    { name: 'Hyphen ( - )', code: 'HYPHEN' },
     { name: 'None', code: 'NONE' },
 ]);
 const indentOptions = ref([
