@@ -6,15 +6,22 @@ import InputText from "primevue/inputtext";
 import Toolbar from 'primevue/toolbar';
 import Button from 'primevue/button';
 import Avatar from 'primevue/avatar';
+import OverlayPanel from 'primevue/overlaypanel';
+import { ColorPicker } from 'vue-accessible-color-picker'
 import Values from 'values.js';
 import { colorItem } from "../../interfaces/config.ts";
 import { useColorStore } from "../../stores/main.ts";
+import { ColorService } from '../../services/color.service.ts';
 
 const store = useColorStore();
 const colors = ref<colorItem[]>(store.getColors);
 const editingRows = ref<colorItem[]>([]);
 const selectedColors = ref<colorItem[]>([]);
 const disableDelete = ref<boolean>(true);
+const op = ref();
+const toggle = (event: any) => {
+    op.value.toggle(event);
+}
 
 const validateItem = (item: colorItem): boolean => {
     if (item.name.trim() === '') {
@@ -49,9 +56,10 @@ const onRowEditCancel = (event: DataTableRowEditCancelEvent) => {
 }
 
 const addNewColor = () => {
+    const newColor = ColorService.getRandomHexColor();
     store.addColor({
-        name: 'new color',
-        code: '#fff',
+        name: newColor.name,
+        code: '#'+newColor.hex,
     });
 };
 const deleteColors = () => {
@@ -100,6 +108,10 @@ const codeSupport = {
     escape: true,
     class: 'code-support-help'
 };
+
+const updateColor = (eventData, color) => {
+    color.code = eventData.cssColor;
+}
 
 </script>
 
@@ -154,7 +166,15 @@ const codeSupport = {
                 </template>
                 <template #editor="{ data, field }">
                     <div class="grid grid-nogutter align-items-center gap-2">
-                        <InputText v-model="data[field]" style="width:100%" />
+                        <InputText v-model="data[field]" style="width:100%" @focus="toggle" />
+                        <OverlayPanel ref="op" style="width:20rem">
+                            <ColorPicker 
+                                :color="data[field]"
+                                :visible-formats="['hex']"
+                                default-format="hex"
+                                @color-change="updateColor($event, data)"
+                            />
+                        </OverlayPanel>
                     </div>
                 </template>
                 <template #body="{ data, field }">
