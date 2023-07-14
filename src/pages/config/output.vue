@@ -20,6 +20,14 @@ const indentOptions = ref([
     { name: 'Four spaces', code: '4' },
     { name: 'Tabs', code: 'TAB' },
 ]);
+const cssColorOptions = ref([
+    { name: 'Hexadecimal', code: 'hex' },
+    { name: 'Hexadecimal with transparency', code: 'hexa' },
+    { name: 'RGB', code: 'rgb' },
+    { name: 'RGBA', code: 'rgba' },
+    { name: 'HSL', code: 'hsl' },
+    { name: 'HSLA', code: 'hsla' },
+])
 
 const disableVariable = ref(true);
 watchEffect(() => {
@@ -107,6 +115,18 @@ watchEffect(() => {
                 <Dropdown
                     v-model="options.indent"
                     :options="indentOptions"
+                    optionLabel="name"
+                    optionValue="code"
+                    class="w-full"
+                />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="field">
+                <label for="classsuffix">How should the indent be made?</label>
+                <Dropdown
+                    v-model="options.cssColor"
+                    :options="cssColorOptions"
                     optionLabel="name"
                     optionValue="code"
                     class="w-full"

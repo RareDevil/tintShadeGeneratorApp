@@ -39,6 +39,7 @@ export const useColorStore = defineStore('colors', {
             classSplitter: 'NONE',
             variableSplitter: 'NONE',
             indent: '2',
+            cssColor: 'hex',
         } as outputOptions,
     }),
     getters: {

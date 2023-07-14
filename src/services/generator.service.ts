@@ -1,5 +1,6 @@
-﻿import { useColorStore } from '../stores/main.ts';
-import { colorItem, splitterOptions, tintShadeItem } from '../interfaces/config.ts';
+﻿import { ColorService } from './color.service.ts';
+import { useColorStore } from '../stores/main.ts';
+import { colorItem, colorOptions, splitterOptions, tintShadeItem } from '../interfaces/config.ts';
 import Values from 'values.js';
 import { ref } from 'vue';
 
@@ -31,6 +32,30 @@ const getSplitter = (splitterOption: splitterOptions): string => {
             return '';
     }
 };
+const getCssColorValue = (color: string): string => {
+    const colorValues = new Values(color);
+    const colorObject = ColorService.colorObject({
+        r: colorValues.rgb[0],
+        g: colorValues.rgb[1],
+        b: colorValues.rgb[2],
+    }, colorValues.alpha)
+    switch (colorStore.getOutputOptions.cssColor as colorOptions) {
+        case 'rgb':
+            return ColorService.toRgbString(colorObject);
+        case 'rgba':
+            return ColorService.toRgbaString(colorObject);
+        case 'hex':
+            return ColorService.toHexString(colorObject);
+        case 'hexa':
+            return ColorService.toHexaString(colorObject);
+        case 'hsl':
+            return ColorService.toHslString(colorObject);
+        case 'hsla':
+            return ColorService.toHslaString(colorObject);
+        default:
+            return '/* Color option not valid. */';
+    }
+}
 
 export const GeneratorService = {
     generateVariableName(color: colorItem, tintShade: tintShadeItem): string {
@@ -60,7 +85,7 @@ export const GeneratorService = {
                     tintShadeColor.setColor(colorValues.shade(tintShade.weight).hexString());
                 }
                 
-                cssVariable += `${getIndent()}--${this.generateVariableName(color,tintShade)}: ${tintShadeColor.hexString()};\n`;
+                cssVariable += `${getIndent()}--${this.generateVariableName(color,tintShade)}: ${getCssColorValue(tintShadeColor.hexString())};\n`;
             }
         }
         cssVariable += '}';
@@ -94,7 +119,7 @@ export const GeneratorService = {
                 if (tintShade.type === 'shade') {
                     tintShadeColor.setColor(colorValues.shade(tintShade.weight).hexString());
                 }
-                let value = tintShadeColor.hexString();
+                let value = tintShadeColor.rgbString();
                 if (colorStore.getOutputOptions.variablesInClass && colorStore.getOutputOptions.cssVariables) {
                     value = `var(--${this.generateVariableName(color, tintShade)})`;
                 }

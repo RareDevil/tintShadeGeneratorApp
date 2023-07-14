@@ -19,6 +19,7 @@ export interface newTintShadeItem extends Omit<tintShadeItem, "id"> { }
 
 export type splitterOptions = 'HYPHEN' | 'UNDERSCORE' | 'NONE';
 export type indentOptions = '2' | '4' | 'TAB' | 'NONE';
+export type colorOptions = 'rgb' | 'rgba' | 'hex' | 'hexa' | 'hsl' | 'hsla' ;
 export interface outputOptions {
     cssVariables: boolean;
     cssClasses: boolean;
@@ -28,4 +29,5 @@ export interface outputOptions {
     classSplitter: splitterOptions;
     variableSplitter: splitterOptions;
     indent: indentOptions;
+    cssColor: colorOptions; 
 }
