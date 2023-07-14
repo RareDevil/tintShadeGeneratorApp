@@ -55,7 +55,7 @@ for (const color of colors.value) {
 </script>
 
 <template>
-    <Accordion :multiple="true" :activeIndex="[0]">
+    <Accordion :multiple="true" :activeIndex="[]">
         <AccordionTab 
             v-for="item in accordingItems" 
             :key="item.id"
