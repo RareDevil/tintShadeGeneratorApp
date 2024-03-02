@@ -22,7 +22,7 @@ function createWindow() {
     win = new BrowserWindow({
         icon: path.join(process.env.PUBLIC, 'electron-vite.svg'),
         frame: false,
-        minHeight: 600,
+        minHeight: 700,
         minWidth: 800,
         webPreferences: {
             nodeIntegration: true,
