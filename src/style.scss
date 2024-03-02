@@ -1,3 +1,31 @@
+@import url('vue-accessible-color-picker/styles');
+
+:root {
+    /* Variables here are for the color picker used in the colors config */
+    // default value #fff
+    --vacp-color-background-input: var(--surface-section); 
+    // default value #fff
+    --vacp-color-background: var(--surface-card);
+    // default value #000
+    --vacp-color-border: #000;
+    // default value #19f
+    --vacp-color-focus: var(--primary-color);
+    // default value currentColor
+    --vacp-color-text-input: currentColor;
+    // default value currentColor
+    --vacp-color-text: currentColor;
+    // default value -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif
+    --vacp-font-family: var(--font-family);
+    // default value 0.8em
+    --vacp-font-size: 0.8em;
+    // default value 6px
+    --vacp-spacing: 6px;
+    // default value 1px
+    --vacp-width-border: 1px;
+    // default value 300px
+    --vacp-width-color-space: 300px;
+}
+
 html {
     font-size: 14px;
 }
