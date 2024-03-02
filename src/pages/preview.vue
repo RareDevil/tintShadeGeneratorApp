@@ -80,7 +80,7 @@ for (const color of colors.value) {
         >
         <div class="flex flex-wrap justify-content-start">
             <div v-for="tintShade in item.tintShades" 
-                 class="text-lg p-4 px-6 flex flex-grow-1 align-items-center justify-content-center" 
+                 class="text-lg p-4 px-6 flex tintShadeItem align-items-center justify-content-center" 
                  :style="{ backgroundColor: tintShade.backgroundHex, color: tintShade.colorHex }"
             >
                 {{ tintShade.backgroundHex }}<br>
@@ -100,5 +100,8 @@ for (const color of colors.value) {
 <style lang="scss">
 .p-accordion .p-accordion-tab:first-child .p-accordion-header .p-accordion-header-link {
     border-top: none;
+}
+div.tintShadeItem {
+    flex: 1 1 180px;
 }
 </style>
