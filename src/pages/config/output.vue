@@ -85,8 +85,8 @@ watchEffect(() => {
         </div>
         <div class="col-6">
             <div class="field">
-                <label for="classprefix">Class splitter between prefix, name and suffix</label>
-                <Dropdown 
+                <label>Class splitter between prefix, name and suffix</label>
+                <Dropdown
                     v-model="options.classSplitter" 
                     :options="splitterOptions" 
                     optionLabel="name" 
@@ -98,7 +98,7 @@ watchEffect(() => {
         </div>
         <div class="col-6">
             <div class="field">
-                <label for="classsuffix">Css varialble splitter between prefix, name and suffix</label>
+                <label>Css varialble splitter between prefix, name and suffix</label>
                 <Dropdown 
                     v-model="options.variableSplitter" 
                     :options="splitterOptions" 
@@ -111,7 +111,7 @@ watchEffect(() => {
         </div>
         <div class="col-6">
             <div class="field">
-                <label for="classsuffix">How should the indent be made?</label>
+                <label>How should the indent be made?</label>
                 <Dropdown
                     v-model="options.indent"
                     :options="indentOptions"
@@ -123,7 +123,7 @@ watchEffect(() => {
         </div>
         <div class="col-6">
             <div class="field">
-                <label for="classsuffix">How should the indent be made?</label>
+                <label>What format should be used for the color?</label>
                 <Dropdown
                     v-model="options.cssColor"
                     :options="cssColorOptions"
