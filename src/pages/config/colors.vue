@@ -109,7 +109,7 @@ const codeSupport = {
     class: 'code-support-help'
 };
 
-const updateColor = (eventData, color) => {
+const updateColor = (eventData: any, color: colorItem) => {
     color.code = eventData.cssColor;
 }
 
