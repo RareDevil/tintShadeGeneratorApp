@@ -25,7 +25,7 @@ const getSplitter = (splitterOption: splitterOptions): string => {
         case 'HYPHEN':
             return '-';
         case 'UNDERSCORE':
-            return '-';
+            return '_';
         case 'NONE':
             return '';
         default:
@@ -119,7 +119,7 @@ export const GeneratorService = {
                 if (tintShade.type === 'shade') {
                     tintShadeColor.setColor(colorValues.shade(tintShade.weight).hexString());
                 }
-                let value = tintShadeColor.rgbString();
+                let value = getCssColorValue(tintShadeColor.hexString());
                 if (colorStore.getOutputOptions.variablesInClass && colorStore.getOutputOptions.cssVariables) {
                     value = `var(--${this.generateVariableName(color, tintShade)})`;
                 }
