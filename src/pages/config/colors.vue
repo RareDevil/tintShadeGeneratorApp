@@ -105,7 +105,7 @@ const codeSupport = {
                     <li>Shorthand for transparent black, rgba(0,0,0,0).</li>
                 </ul>
             </ul>`, 
-    escape: true,
+    escape: false,
     class: 'code-support-help'
 };
 
