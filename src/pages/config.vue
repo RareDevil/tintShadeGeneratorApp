@@ -1,19 +1,26 @@
 ﻿<script setup lang="ts">
     import TabMenu from 'primevue/tabmenu';
     import { ref } from "vue";
+    import router from '../core/router.ts';
 
     const items = ref([
         {
             label: 'Colors',
-            to: '/config/'
+            command: () => {
+                router.push({ name: 'configColors' }).then();
+            }
         },
         {
             label: 'Tint & Shade',
-            to: '/config/tintshade'
+            command: () => {
+                router.push({ name: 'configTintshade' }).then();
+            }
         },
         {
             label: 'Output',
-            to: '/config/output'
+            command: () => {
+                router.push({ name: 'configOutput' }).then();
+            }
         }
     ]);
 </script>
