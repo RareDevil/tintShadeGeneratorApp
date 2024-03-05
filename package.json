@@ -18,9 +18,9 @@
     "primeicons": "^6.0.1",
     "primevue": "^3.29.2",
     "values.js": "^2.1.1",
-    "vue": "^3.2.47",
+    "vue": "^3.3.8",
     "vue-accessible-color-picker": "^5.0.1",
-    "vue-router": "4.2.2"
+    "vue-router": "4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
