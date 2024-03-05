@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "material-icons": "^1.13.8",
+    "material-icons": "^1.13.12",
     "material-symbols": "^0.16.0",
     "monaco-editor": "^0.46.0",
     "pinia": "^2.1.7",
