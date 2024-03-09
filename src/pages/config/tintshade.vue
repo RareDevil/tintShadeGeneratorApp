@@ -100,7 +100,7 @@ const weightTooltip = 'The weight of the tint/shade. The value is 0-100 and it a
             @row-unselect-all="onRowUnselectAll"
             stripedRows scrollable scrollHeight="100%"
             tableClass="editable-cells-table"
-            tableStyle="min-width: 50rem"
+            :tableStyle="{minWidth: '50rem'}"
             class="h-full overflow-auto"
         >
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>

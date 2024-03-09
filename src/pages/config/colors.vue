@@ -151,7 +151,7 @@ const updateColor = (eventData: any, color: colorItem) => {
             @row-unselect-all="onRowUnselectAll"
             stripedRows scrollable scrollHeight="100%"
             tableClass="editable-cells-table"
-            tableStyle="min-width: 50rem"
+            :tableStyle="{minWidth: '50rem'}"
             class="h-full overflow-auto"
         >
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
